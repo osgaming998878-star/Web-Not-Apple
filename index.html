@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>iPhone 17 Ultra CHAOS EDITION 🔥</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap');
+
+    :root {
+      --neon-pink: #ff006e;
+      --neon-cyan: #00f5ff;
+      --neon-yellow: #ffff00;
+      --neon-green: #39ff14;
+      --neon-purple: #bf00ff;
+      --neon-orange: #ff6600;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: #000;
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    /* ─── CUSTOM CURSOR ─── */
+    #cursor {
+      width: 20px; height: 20px;
+      border: 2px solid var(--neon-cyan);
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      transition: transform 0.1s, border-color 0.2s;
+      mix-blend-mode: difference;
+    }
+    #cursor-dot {
+      width: 6px; height: 6px;
+      background: var(--neon-pink);
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+    }
+
+    /* ─── CANVAS BACKGROUND ─── */
+    #bg-canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* ─── NAVBAR ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 48px;
+      backdrop-filter: blur(20px);
+      background: rgba(0,0,0,0.4);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .nav-logo {
+      font-size: 24px;
+      font-weight: 900;
+      background: linear-gradient(90deg, var(--neon-pink), var(--neon-cyan), var(--neon-yellow));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-size: 200%;
+      animation: gradShift 2s linear infinite;
+    }
+    nav ul { list-style: none; display: flex; gap: 32px; }
+    nav ul li a {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      font-size: 14px;
+      letter-spacing: 1px;
+      transition: color 0.3s;
+    }
+    nav ul li a:hover { color: var(--neon-cyan); text-shadow: 0 0 10px var(--neon-cyan); }
+
+    /* ─── SECTIONS ─── */
+    section {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 48px;
+      overflow: hidden;
+    }
+
+    /* ─── HERO ─── */
+    #hero {
+      text-align: center;
+      background: radial-gradient(ellipse at center, #0a0015 0%, #000 70%);
+    }
+    .hero-eyebrow {
+      font-size: 12px;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      color: var(--neon-cyan);
+      text-shadow: 0 0 20px var(--neon-cyan);
+      margin-bottom: 24px;
+      opacity: 0;
+      animation: fadeUp 1s 0.3s forwards;
+    }
+    .hero-title {
+      font-size: clamp(48px, 10vw, 120px);
+      font-weight: 900;
+      line-height: 1;
+      margin-bottom: 16px;
+      opacity: 0;
+      animation: fadeUp 1s 0.5s forwards;
+    }
+    .glitch {
+      position: relative;
+      display: inline-block;
+    }
+    .glitch::before, .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+    }
+    .glitch::before {
+      color: var(--neon-pink);
+      animation: glitch1 3s infinite;
+      clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+    }
+    .glitch::after {
+      color: var(--neon-cyan);
+      animation: glitch2 3s infinite;
+      clip-path: polygon(0 66%, 100% 66%, 100% 100%, 0 100%);
+    }
+    .hero-sub {
+      font-size: clamp(18px, 3vw, 32px);
+      font-weight: 300;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 48px;
+      opacity: 0;
+      animation: fadeUp 1s 0.7s forwards;
+    }
+    .rainbow-text {
+      background: linear-gradient(90deg,
+        #ff0000, #ff7700, #ffff00, #00ff00, #0000ff, #8b00ff, #ff0000);
+      background-size: 400%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: rainbowShift 3s linear infinite;
+    }
+    .hero-phone {
+      width: min(280px, 60vw);
+      filter: drop-shadow(0 0 40px var(--neon-purple)) drop-shadow(0 0 80px rgba(191,0,255,0.3));
+      animation: float 4s ease-in-out infinite, rotateY3d 8s linear infinite;
+      opacity: 0;
+      animation-delay: 0.9s;
+      animation-fill-mode: forwards;
+      margin-bottom: 48px;
+    }
+    .btn-chaos {
+      padding: 16px 48px;
+      background: transparent;
+      border: 2px solid transparent;
+      border-radius: 50px;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: none;
+      position: relative;
+      background-clip: padding-box;
+      color: #fff;
+      background-image: linear-gradient(#000, #000),
+        linear-gradient(90deg, var(--neon-pink), var(--neon-cyan), var(--neon-yellow), var(--neon-pink));
+      background-origin: border-box;
+      background-clip: padding-box, border-box;
+      transition: transform 0.2s, box-shadow 0.2s;
+      animation: pulseBorder 2s linear infinite;
+      opacity: 0;
+      animation: fadeUp 1s 1.1s forwards, pulseBorder 2s 1.1s linear infinite;
+    }
+    .btn-chaos:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 40px var(--neon-pink), 0 0 80px rgba(255,0,110,0.3);
+    }
+
+    /* ─── SCROLL INDICATOR ─── */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: rgba(255,255,255,0.4);
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+    .scroll-line {
+      width: 1px;
+      height: 48px;
+      background: linear-gradient(to bottom, var(--neon-cyan), transparent);
+      animation: scrollBounce 2s ease-in-out infinite;
+    }
+
+    /* ─── STICKY SCROLL SECTIONS ─── */
+    .sticky-wrap {
+      position: relative;
+      height: 400vh;
+    }
+    .sticky-inner {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    /* ─── FEATURE SECTION ─── */
+    #features {
+      background: #050005;
+    }
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      max-width: 1200px;
+      width: 100%;
+    }
+    .feature-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 24px;
+      padding: 40px 32px;
+      backdrop-filter: blur(10px);
+      transition: transform 0.4s, border-color 0.4s, box-shadow 0.4s;
+      opacity: 0;
+      transform: translateY(60px);
+    }
+    .feature-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      border-color: var(--neon-cyan);
+      box-shadow: 0 0 40px rgba(0,245,255,0.2), inset 0 0 40px rgba(0,245,255,0.05);
+    }
+    .feature-card.visible {
+      animation: cardReveal 0.7s forwards;
+    }
+    .feature-icon {
+      font-size: 48px;
+      margin-bottom: 16px;
+      display: block;
+      animation: iconWiggle 2s ease-in-out infinite;
+    }
+    .feature-card:nth-child(2) .feature-icon { animation-delay: 0.3s; }
+    .feature-card:nth-child(3) .feature-icon { animation-delay: 0.6s; }
+    .feature-card:nth-child(4) .feature-icon { animation-delay: 0.9s; }
+    .feature-title {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .feature-desc {
+      font-size: 14px;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.7;
+    }
+    .tag {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-top: 16px;
+    }
+    .tag-pink { background: rgba(255,0,110,0.2); color: var(--neon-pink); border: 1px solid var(--neon-pink); }
+    .tag-cyan { background: rgba(0,245,255,0.2); color: var(--neon-cyan); border: 1px solid var(--neon-cyan); }
+    .tag-green { background: rgba(57,255,20,0.2); color: var(--neon-green); border: 1px solid var(--neon-green); }
+    .tag-yellow { background: rgba(255,255,0,0.2); color: var(--neon-yellow); border: 1px solid var(--neon-yellow); }
+
+    /* ─── CHAOS SECTION ─── */
+    #chaos {
+      text-align: center;
+      background: #000;
+      min-height: 100vh;
+    }
+    .chaos-title {
+      font-size: clamp(36px, 8vw, 96px);
+      font-weight: 900;
+      position: relative;
+    }
+    #canvas-chaos {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+    }
+
+    /* ─── SPECS SECTION ─── */
+    #specs {
+      background: linear-gradient(135deg, #000510 0%, #050005 100%);
+    }
+    .spec-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      max-width: 800px;
+      width: 100%;
+      opacity: 0;
+      transform: translateX(-40px);
+      transition: opacity 0.5s, transform 0.5s;
+    }
+    .spec-row.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .spec-label { color: rgba(255,255,255,0.4); font-size: 14px; }
+    .spec-value { font-size: 16px; font-weight: 700; }
+
+    /* ─── PRICE SECTION ─── */
+    #price {
+      text-align: center;
+      background: radial-gradient(ellipse at center, #0f0020 0%, #000 70%);
+    }
+    .price-tag {
+      font-size: clamp(60px, 12vw, 140px);
+      font-weight: 900;
+      line-height: 1;
+      background: linear-gradient(180deg, #fff 0%, rgba(255,255,255,0.3) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .price-note { color: rgba(255,255,255,0.4); font-size: 14px; margin-top: 8px; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 48px;
+      color: rgba(255,255,255,0.3);
+      font-size: 13px;
+      border-top: 1px solid rgba(255,255,255,0.07);
+      background: #000;
+    }
+    footer span { color: var(--neon-pink); }
+
+    /* ─── SECTION TITLES ─── */
+    .section-title {
+      font-size: clamp(32px, 6vw, 72px);
+      font-weight: 900;
+      text-align: center;
+      margin-bottom: 16px;
+    }
+    .section-sub {
+      font-size: 16px;
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      margin-bottom: 64px;
+      max-width: 600px;
+    }
+
+    /* ─── NOISE OVERLAY ─── */
+    .noise {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 200;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      animation: noiseAnim 0.1s steps(1) infinite;
+    }
+
+    /* ─── SPARKLE TRAIL ─── */
+    .sparkle {
+      position: fixed;
+      pointer-events: none;
+      z-index: 9998;
+      border-radius: 50%;
+      animation: sparkleAnim 0.8s ease-out forwards;
+    }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+    @keyframes rotateY3d {
+      0%, 100% { filter: drop-shadow(0 0 40px var(--neon-purple)) drop-shadow(-20px 0 30px var(--neon-pink)); }
+      50% { filter: drop-shadow(0 0 40px var(--neon-cyan)) drop-shadow(20px 0 30px var(--neon-green)); }
+    }
+    @keyframes glitch1 {
+      0%, 90%, 100% { transform: translate(0); }
+      92% { transform: translate(-3px, 1px); }
+      94% { transform: translate(3px, -1px); }
+      96% { transform: translate(-2px, 2px); }
+    }
+    @keyframes glitch2 {
+      0%, 90%, 100% { transform: translate(0); }
+      91% { transform: translate(2px, -1px); }
+      93% { transform: translate(-3px, 1px); }
+      95% { transform: translate(3px, 2px); }
+    }
+    @keyframes gradShift {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 200% 50%; }
+    }
+    @keyframes rainbowShift {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 400% 50%; }
+    }
+    @keyframes pulseBorder {
+      0%, 100% { box-shadow: 0 0 10px rgba(255,0,110,0.4); }
+      50% { box-shadow: 0 0 30px rgba(0,245,255,0.6); }
+    }
+    @keyframes scrollBounce {
+      0%, 100% { transform: scaleY(1); opacity: 1; }
+      50% { transform: scaleY(0.5); opacity: 0.4; }
+    }
+    @keyframes cardReveal {
+      from { opacity: 0; transform: translateY(60px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes iconWiggle {
+      0%, 100% { transform: rotate(-5deg) scale(1); }
+      50% { transform: rotate(5deg) scale(1.1); }
+    }
+    @keyframes noiseAnim {
+      0% { background-position: 0 0; }
+      25% { background-position: 50% 50%; }
+      50% { background-position: 100% 0; }
+      75% { background-position: 50% 100%; }
+      100% { background-position: 0 0; }
+    }
+    @keyframes sparkleAnim {
+      0%   { transform: scale(1) translate(0,0); opacity: 1; }
+      100% { transform: scale(0) translate(var(--dx), var(--dy)); opacity: 0; }
+    }
+    @keyframes typewriter {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+    @keyframes hueRotate {
+      from { filter: hue-rotate(0deg) drop-shadow(0 0 40px rgba(191,0,255,0.5)); }
+      to { filter: hue-rotate(360deg) drop-shadow(0 0 40px rgba(191,0,255,0.5)); }
+    }
+
+    /* ─── PHONE SVG STYLE ─── */
+    .phone-svg {
+      width: min(260px, 55vw);
+      animation: float 4s ease-in-out infinite, hueRotate 4s linear infinite;
+      filter: drop-shadow(0 0 60px rgba(191,0,255,0.7));
+    }
+
+    /* ─── MARQUEE ─── */
+    .marquee-wrap {
+      width: 100%;
+      overflow: hidden;
+      padding: 20px 0;
+      background: rgba(255,255,255,0.03);
+      border-top: 1px solid rgba(255,255,255,0.07);
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      margin: 40px 0;
+    }
+    .marquee-track {
+      display: flex;
+      gap: 48px;
+      width: max-content;
+      animation: marqueeScroll 20s linear infinite;
+      white-space: nowrap;
+    }
+    .marquee-item {
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+    }
+    .marquee-item span { color: var(--neon-cyan); }
+    @keyframes marqueeScroll {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* ─── COUNTER ─── */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      max-width: 900px;
+      width: 100%;
+      margin-top: 48px;
+    }
+    .stat-item { text-align: center; }
+    .stat-number {
+      font-size: clamp(40px, 7vw, 80px);
+      font-weight: 900;
+      display: block;
+    }
+    .stat-label { font-size: 13px; color: rgba(255,255,255,0.4); letter-spacing: 2px; text-transform: uppercase; }
+
+    /* ─── CTA BIG ─── */
+    .cta-big {
+      font-size: clamp(48px, 10vw, 120px);
+      font-weight: 900;
+      text-align: center;
+      line-height: 1.1;
+      position: relative;
+      z-index: 1;
+    }
+    .strike {
+      text-decoration: line-through;
+      color: rgba(255,255,255,0.2);
+    }
+
+    /* ─── HOLOGRAPHIC CARD ─── */
+    .holo-card {
+      width: min(360px, 80vw);
+      background: linear-gradient(135deg,
+        rgba(255,255,255,0.1),
+        rgba(255,255,255,0.05));
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 32px;
+      padding: 48px;
+      backdrop-filter: blur(20px);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s;
+    }
+    .holo-card::before {
+      content: '';
+      position: absolute;
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: conic-gradient(
+        from 0deg,
+        transparent 0deg,
+        rgba(0,245,255,0.1) 60deg,
+        rgba(255,0,110,0.1) 120deg,
+        rgba(191,0,255,0.1) 180deg,
+        rgba(57,255,20,0.1) 240deg,
+        rgba(255,255,0,0.1) 300deg,
+        transparent 360deg
+      );
+      animation: holoRotate 4s linear infinite;
+    }
+    @keyframes holoRotate { to { transform: rotate(360deg); } }
+    .holo-card:hover { transform: perspective(800px) rotateX(5deg) rotateY(5deg) scale(1.05); }
+  </style>
+</head>
+<body>
+
+  <!-- Cursor -->
+  <div id="cursor"></div>
+  <div id="cursor-dot"></div>
+
+  <!-- Particle BG -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- Film Grain Noise -->
+  <div class="noise"></div>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">🍎 not Apple™</div>
+    <ul>
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#specs">Specs</a></li>
+      <li><a href="#price">Price</a></li>
+    </ul>
+  </nav>
+
+  <!-- ═══════════════ HERO ═══════════════ -->
+  <section id="hero">
+    <p class="hero-eyebrow">✦ เปิดตัวแล้ว · วันนี้เท่านั้น ✦</p>
+
+    <h1 class="hero-title">
+      <span class="glitch" data-text="iPhone">iPhone</span><br/>
+      <span class="rainbow-text">17 ULTRA</span>
+    </h1>
+
+    <p class="hero-sub">โทรศัพท์ที่ดีที่สุด<br/>ตั้งแต่เคยถือมือถือ</p>
+
+    <!-- Inline SVG Phone -->
+    <svg class="phone-svg" viewBox="0 0 200 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="pg" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#1a1a2e"/>
+          <stop offset="100%" stop-color="#16213e"/>
+        </linearGradient>
+        <linearGradient id="sg" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#bf00ff"/>
+          <stop offset="50%" stop-color="#00f5ff"/>
+          <stop offset="100%" stop-color="#ff006e"/>
+        </linearGradient>
+        <linearGradient id="cg" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#0a0a0a"/>
+          <stop offset="100%" stop-color="#1a1a1a"/>
+        </linearGradient>
+        <filter id="glow">
+          <feGaussianBlur stdDeviation="4" result="blur"/>
+          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+      <!-- Body -->
+      <rect x="10" y="20" width="180" height="360" rx="36" ry="36" fill="url(#pg)" stroke="url(#sg)" stroke-width="2"/>
+      <!-- Screen -->
+      <rect x="20" y="50" width="160" height="290" rx="20" ry="20" fill="#050510"/>
+      <!-- Dynamic Island -->
+      <rect x="72" y="62" width="56" height="18" rx="9" fill="#000"/>
+      <!-- Screen content glow -->
+      <circle cx="100" cy="195" r="60" fill="url(#sg)" opacity="0.15"/>
+      <!-- Screen icons -->
+      <rect x="40" y="100" width="30" height="30" rx="8" fill="#bf00ff" opacity="0.7"/>
+      <rect x="85" y="100" width="30" height="30" rx="8" fill="#00f5ff" opacity="0.7"/>
+      <rect x="130" y="100" width="30" height="30" rx="8" fill="#ff006e" opacity="0.7"/>
+      <rect x="40" y="145" width="30" height="30" rx="8" fill="#39ff14" opacity="0.7"/>
+      <rect x="85" y="145" width="30" height="30" rx="8" fill="#ffff00" opacity="0.7"/>
+      <rect x="130" y="145" width="30" height="30" rx="8" fill="#ff6600" opacity="0.7"/>
+      <!-- Status text -->
+      <rect x="40" y="195" width="120" height="3" rx="2" fill="url(#sg)" opacity="0.5"/>
+      <rect x="40" y="208" width="80" height="3" rx="2" fill="rgba(255,255,255,0.2)"/>
+      <rect x="40" y="221" width="100" height="3" rx="2" fill="rgba(255,255,255,0.2)"/>
+      <!-- Camera bump -->
+      <rect x="108" y="26" width="60" height="55" rx="16" fill="url(#cg)" stroke="url(#sg)" stroke-width="1.5"/>
+      <circle cx="128" cy="44" r="10" fill="#0a0a0a" stroke="#333" stroke-width="1.5"/>
+      <circle cx="128" cy="44" r="7" fill="#111"/>
+      <circle cx="128" cy="44" r="4" fill="#1a1a1a"/>
+      <circle cx="150" cy="44" r="10" fill="#0a0a0a" stroke="#333" stroke-width="1.5"/>
+      <circle cx="150" cy="44" r="7" fill="#111"/>
+      <circle cx="150" cy="44" r="4" fill="#1a1a1a"/>
+      <circle cx="139" cy="64" r="10" fill="#0a0a0a" stroke="#333" stroke-width="1.5"/>
+      <circle cx="139" cy="64" r="7" fill="#111"/>
+      <circle cx="139" cy="64" r="4" fill="#1a1a1a"/>
+      <!-- Camera reflections -->
+      <circle cx="126" cy="42" r="2" fill="#00f5ff" opacity="0.6" filter="url(#glow)"/>
+      <circle cx="148" cy="42" r="2" fill="#ff006e" opacity="0.6" filter="url(#glow)"/>
+      <circle cx="137" cy="62" r="2" fill="#bf00ff" opacity="0.6" filter="url(#glow)"/>
+      <!-- Home indicator -->
+      <rect x="75" y="332" width="50" height="4" rx="2" fill="rgba(255,255,255,0.3)"/>
+      <!-- Side buttons -->
+      <rect x="8" y="120" width="4" height="40" rx="2" fill="url(#sg)" opacity="0.6"/>
+      <rect x="8" y="170" width="4" height="30" rx="2" fill="url(#sg)" opacity="0.6"/>
+      <rect x="188" y="130" width="4" height="50" rx="2" fill="url(#sg)" opacity="0.6"/>
+    </svg>
+
+    <button class="btn-chaos" onclick="document.getElementById('features').scrollIntoView({behavior:'smooth'})">
+      🚀 ซื้อเลย ก่อนหมด
+    </button>
+
+    <div class="scroll-indicator">
+      <div class="scroll-line"></div>
+      <span>scroll</span>
+    </div>
+  </section>
+
+  <!-- ═══════════════ MARQUEE ═══════════════ -->
+  <div class="marquee-wrap">
+    <div class="marquee-track" id="marqueeTrack">
+      <span class="marquee-item">✦ TITANIUM <span>PRO MAX ULTRA</span></span>
+      <span class="marquee-item">✦ กล้อง <span>108MP</span></span>
+      <span class="marquee-item">✦ แบต <span>7 วัน</span></span>
+      <span class="marquee-item">✦ ชิป <span>A19 BIONIC</span></span>
+      <span class="marquee-item">✦ TITANIUM <span>PRO MAX ULTRA</span></span>
+      <span class="marquee-item">✦ กล้อง <span>108MP</span></span>
+      <span class="marquee-item">✦ แบต <span>7 วัน</span></span>
+      <span class="marquee-item">✦ ชิป <span>A19 BIONIC</span></span>
+      <span class="marquee-item">✦ TITANIUM <span>PRO MAX ULTRA</span></span>
+      <span class="marquee-item">✦ กล้อง <span>108MP</span></span>
+      <span class="marquee-item">✦ แบต <span>7 วัน</span></span>
+      <span class="marquee-item">✦ ชิป <span>A19 BIONIC</span></span>
+    </div>
+  </div>
+
+  <!-- ═══════════════ FEATURES ═══════════════ -->
+  <section id="features">
+    <h2 class="section-title" style="background: linear-gradient(90deg,var(--neon-cyan),var(--neon-pink)); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">
+      ทำไมต้องซื้อ?
+    </h2>
+    <p class="section-sub">เพราะมันเจ๋งมาก เชื่อเรา 🔥</p>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <span class="feature-icon">📸</span>
+        <h3 class="feature-title" style="color:var(--neon-pink)">กล้อง 108MP</h3>
+        <p class="feature-desc">ถ่ายรูปคนชัดขนาดที่เห็นขุมขน เหงื่อ และปมในใจ ได้ครบในภาพเดียว</p>
+        <span class="tag tag-pink">NEW</span>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">⚡</span>
+        <h3 class="feature-title" style="color:var(--neon-cyan)">A19 Bionic Chip</h3>
+        <p class="feature-desc">เร็วกว่า PC ของคุณ และ laptop ของเพื่อน และ server ของบริษัท</p>
+        <span class="tag tag-cyan">FASTER</span>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🔋</span>
+        <h3 class="feature-title" style="color:var(--neon-green)">แบต 7 วัน</h3>
+        <p class="feature-desc">ไม่ต้องพกสายชาร์จ ไม่ต้องง้อปลั๊กไฟ ไปทะเลได้สบายๆ</p>
+        <span class="tag tag-green">7 DAYS</span>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🌈</span>
+        <h3 class="feature-title" style="color:var(--neon-yellow)">Display ลายตา</h3>
+        <p class="feature-desc">จอ 6.7" OLED 120Hz สีสันจัดจ้านจนต้องสวมแว่นกันแดดใน้บ้าน</p>
+        <span class="tag tag-yellow">120Hz</span>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stat-grid" style="margin-top:80px">
+      <div class="stat-item">
+        <span class="stat-number rainbow-text" data-target="108">0</span>
+        <span style="font-size:40px;font-weight:900;background:linear-gradient(90deg,var(--neon-pink),var(--neon-cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent">MP</span>
+        <span class="stat-label">ความละเอียดกล้อง</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number rainbow-text" data-target="7">0</span>
+        <span style="font-size:40px;font-weight:900;background:linear-gradient(90deg,var(--neon-green),var(--neon-yellow));-webkit-background-clip:text;-webkit-text-fill-color:transparent">วัน</span>
+        <span class="stat-label">แบตอยู่ได้</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number rainbow-text" data-target="120">0</span>
+        <span style="font-size:40px;font-weight:900;background:linear-gradient(90deg,var(--neon-purple),var(--neon-pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent">Hz</span>
+        <span class="stat-label">อัตรารีเฟรชจอ</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ CHAOS FX SECTION ═══════════════ -->
+  <section id="chaos" style="position:relative; overflow:hidden;">
+    <canvas id="canvas-chaos"></canvas>
+    <div style="position:relative;z-index:1;text-align:center;">
+      <p style="font-size:13px;letter-spacing:6px;text-transform:uppercase;color:var(--neon-pink);margin-bottom:24px;text-shadow:0 0 20px var(--neon-pink)">
+        ✦ Warning: ลายตา ✦
+      </p>
+      <h2 class="chaos-title">
+        <span class="rainbow-text">มันเจ๋ง</span><br/>
+        <span style="font-size:0.6em;color:rgba(255,255,255,0.4)">จริงๆ นะ</span>
+      </h2>
+      <p style="margin-top:32px;font-size:18px;color:rgba(255,255,255,0.5);max-width:500px;margin-left:auto;margin-right:auto;line-height:1.8">
+        นักวิจัยจาก <span style="color:var(--neon-cyan)">MIT</span> ยืนยันว่า<br/>
+        "โทรศัพท์เครื่องนี้ทำให้ผู้ใช้ดูเท่ขึ้น <span style="color:var(--neon-yellow)">47%</span>"
+        <br/><small style="font-size:12px;color:rgba(255,255,255,0.3)">(ข้อมูลนี้แต่งขึ้นทั้งหมด)</small>
+      </p>
+    </div>
+  </section>
+
+  <!-- ═══════════════ SPECS ═══════════════ -->
+  <section id="specs">
+    <h2 class="section-title">สเปค<span style="color:var(--neon-cyan)">ครบ</span></h2>
+    <p class="section-sub">ตัวเลขที่ทำให้คุณรู้สึกดี แม้ไม่รู้ว่าหมายความว่าอะไร</p>
+    <div id="specList" style="width:100%;max-width:800px;">
+      <div class="spec-row">
+        <span class="spec-label">ชิปเซ็ต</span>
+        <span class="spec-value" style="color:var(--neon-pink)">A19 Bionic "Galaxy Brain"</span>
+      </div>
+      <div class="spec-row">
+        <span class="spec-label">RAM</span>
+        <span class="spec-value" style="color:var(--neon-cyan)">16 GB LPDDR5X</span>
+      </div>
+      <div class="spec-row">
+        <span class="spec-label">จอภาพ</span>
+        <span class="spec-value" style="color:var(--neon-green)">6.7" ProMotion OLED 120Hz</span>
+      </div>
+      <div class="spec-row">
+        <span class="spec-label">กล้องหลัก</span>
+        <span class="spec-value" style="color:var(--neon-yellow)">108MP + 48MP + 12MP</span>
+      </div>
+      <div class="spec-row">
+        <span class="spec-label">แบตเตอรี่</span>
+        <span class="spec-value" style="color:var(--neon-purple)">6,000 mAh (≈7 วัน)</span>
+      </div>
+      <div class="spec-row">
+        <span class="spec-label">ชาร์จ</span>
+        <span class="spec-value" style="color:var(--neon-orange)">120W สายฟ้าแลบ™</span>
+      </div>
+      <div class="spec-row">
+        <span class="spec-label">OS</span>
+        <span class="spec-value" style="color:var(--neon-pink)">iOS 19 "Ultra Chaos Edition"</span>
+      </div>
+      <div class="spec-row">
+        <span class="spec-label">พิเศษ</span>
+        <span class="spec-value rainbow-text">ทนน้ำ IP69 / กันหล่น</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ PRICE ═══════════════ -->
+  <section id="price">
+    <p style="font-size:13px;letter-spacing:6px;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:32px">
+      เริ่มต้น
+    </p>
+
+    <!-- Holographic card -->
+    <div class="holo-card">
+      <div style="position:relative;z-index:1;">
+        <p class="price-tag">฿39,900</p>
+        <p class="price-note">ราคาพิเศษวันนี้เท่านั้น<br/><s style="opacity:0.4">ราคาปกติ ฿69,900</s></p>
+        <div style="margin-top:24px;padding:12px 0;border-top:1px solid rgba(255,255,255,0.1);">
+          <p style="font-size:13px;color:rgba(255,255,255,0.4);">📦 ส่งฟรีทั่วไทย</p>
+          <p style="font-size:13px;color:rgba(255,255,255,0.4);">🛡️ รับประกัน 2 ปี</p>
+          <p style="font-size:13px;color:rgba(255,255,255,0.4);">✨ แถมเคสฟรี</p>
+        </div>
+        <button class="btn-chaos" style="margin-top:24px;display:inline-block;animation:pulseBorder 2s linear infinite;">
+          🛒 สั่งซื้อเลย
+        </button>
+      </div>
+    </div>
+
+    <p style="margin-top:48px;font-size:11px;color:rgba(255,255,255,0.2);max-width:400px;text-align:center;line-height:1.8">
+      * เว็บนี้สร้างเพื่อความสนุกเท่านั้น ไม่ใช่เว็บ Apple จริง
+      ข้อมูลสเปคแต่งขึ้นทั้งหมด ไม่รับผิดชอบต่อความผิดหวังที่เกิดขึ้น 😅
+    </p>
+  </section>
+
+  <!-- ═══════════════ FOOTER ═══════════════ -->
+  <footer>
+    <p>© 2026 <span>not Apple™</span> — สร้างด้วย ❤️ และ JavaScript มากเกินไป</p>
+    <p style="margin-top:8px;opacity:0.5">iPhone เป็นเครื่องหมายการค้าของ Apple Inc. · เว็บนี้ไม่เกี่ยวข้องกับ Apple แต่อย่างใด</p>
+  </footer>
+
+  <!-- ═══════════════ JAVASCRIPT ═══════════════ -->
+  <script>
+  // ─── CURSOR ───
+  const cursor = document.getElementById('cursor');
+  const cursorDot = document.getElementById('cursor-dot');
+  let mx = 0, my = 0;
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursorDot.style.left = mx + 'px';
+    cursorDot.style.top = my + 'px';
+    cursor.style.left = (mx - 10) + 'px';
+    cursor.style.top = (my - 10) + 'px';
+    spawnSparkle(mx, my);
+  });
+  document.querySelectorAll('button, a').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.style.transform = 'scale(2)';
+      cursor.style.borderColor = 'var(--neon-pink)';
+    });
+    el.addEventListener('mouseleave', () => {
+      cursor.style.transform = 'scale(1)';
+      cursor.style.borderColor = 'var(--neon-cyan)';
+    });
+  });
+
+  // ─── SPARKLE TRAIL ───
+  let sparkleCount = 0;
+  function spawnSparkle(x, y) {
+    if (sparkleCount > 40) return; // limit
+    sparkleCount++;
+    const s = document.createElement('div');
+    s.classList.add('sparkle');
+    const size = Math.random() * 8 + 3;
+    const colors = ['#ff006e','#00f5ff','#ffff00','#bf00ff','#39ff14','#ff6600'];
+    const color = colors[Math.floor(Math.random() * colors.length)];
+    const dx = (Math.random() - 0.5) * 60 + 'px';
+    const dy = (Math.random() - 0.5) * 60 + 'px';
+    s.style.cssText = `
+      left:${x}px; top:${y}px;
+      width:${size}px; height:${size}px;
+      background:${color};
+      box-shadow: 0 0 ${size*2}px ${color};
+      --dx:${dx}; --dy:${dy};
+    `;
+    document.body.appendChild(s);
+    setTimeout(() => { s.remove(); sparkleCount--; }, 800);
+  }
+
+  // ─── PARTICLE BG CANVAS ───
+  const bgCanvas = document.getElementById('bg-canvas');
+  const bgCtx = bgCanvas.getContext('2d');
+  let particles = [];
+  const PARTICLE_COUNT = 120;
+
+  function resizeBg() {
+    bgCanvas.width = window.innerWidth;
+    bgCanvas.height = window.innerHeight;
+  }
+  resizeBg();
+  window.addEventListener('resize', resizeBg);
+
+  class Particle {
+    constructor() { this.reset(); }
+    reset() {
+      this.x = Math.random() * bgCanvas.width;
+      this.y = Math.random() * bgCanvas.height;
+      this.size = Math.random() * 2 + 0.5;
+      this.speedX = (Math.random() - 0.5) * 0.5;
+      this.speedY = (Math.random() - 0.5) * 0.5;
+      const hue = Math.random() * 360;
+      this.color = `hsl(${hue},100%,70%)`;
+      this.alpha = Math.random() * 0.6 + 0.1;
+      this.life = Math.random() * 200 + 100;
+    }
+    update() {
+      this.x += this.speedX;
+      this.y += this.speedY;
+      this.life--;
+      if (this.life <= 0 || this.x < 0 || this.x > bgCanvas.width || this.y < 0 || this.y > bgCanvas.height) {
+        this.reset();
+      }
+    }
+    draw() {
+      bgCtx.save();
+      bgCtx.globalAlpha = this.alpha;
+      bgCtx.fillStyle = this.color;
+      bgCtx.shadowColor = this.color;
+      bgCtx.shadowBlur = 6;
+      bgCtx.beginPath();
+      bgCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      bgCtx.fill();
+      bgCtx.restore();
+    }
+  }
+
+  for (let i = 0; i < PARTICLE_COUNT; i++) particles.push(new Particle());
+
+  function animateBg() {
+    bgCtx.clearRect(0, 0, bgCanvas.width, bgCanvas.height);
+    // Draw connections
+    particles.forEach((p, i) => {
+      p.update(); p.draw();
+      for (let j = i+1; j < particles.length; j++) {
+        const q = particles[j];
+        const dist = Math.hypot(p.x - q.x, p.y - q.y);
+        if (dist < 80) {
+          bgCtx.save();
+          bgCtx.globalAlpha = (1 - dist/80) * 0.15;
+          bgCtx.strokeStyle = p.color;
+          bgCtx.lineWidth = 0.5;
+          bgCtx.beginPath();
+          bgCtx.moveTo(p.x, p.y);
+          bgCtx.lineTo(q.x, q.y);
+          bgCtx.stroke();
+          bgCtx.restore();
+        }
+      }
+    });
+    requestAnimationFrame(animateBg);
+  }
+  animateBg();
+
+  // ─── CHAOS CANVAS (explosive rings) ───
+  const chaosCanvas = document.getElementById('canvas-chaos');
+  const chaosCtx = chaosCanvas.getContext('2d');
+  let rings = [];
+
+  function resizeChaos() {
+    chaosCanvas.width = chaosCanvas.parentElement.offsetWidth;
+    chaosCanvas.height = chaosCanvas.parentElement.offsetHeight;
+  }
+  resizeChaos();
+  window.addEventListener('resize', resizeChaos);
+
+  class Ring {
+    constructor() {
+      this.x = chaosCanvas.width * (0.2 + Math.random() * 0.6);
+      this.y = chaosCanvas.height * (0.2 + Math.random() * 0.6);
+      this.r = 0;
+      this.maxR = 80 + Math.random() * 120;
+      this.speed = 1 + Math.random() * 2;
+      const hue = Math.random() * 360;
+      this.color = `hsl(${hue},100%,60%)`;
+      this.alpha = 0.8;
+    }
+    update() {
+      this.r += this.speed;
+      this.alpha = (1 - this.r / this.maxR) * 0.8;
+      return this.r < this.maxR;
+    }
+    draw() {
+      chaosCtx.save();
+      chaosCtx.globalAlpha = this.alpha;
+      chaosCtx.strokeStyle = this.color;
+      chaosCtx.shadowColor = this.color;
+      chaosCtx.shadowBlur = 15;
+      chaosCtx.lineWidth = 2;
+      chaosCtx.beginPath();
+      chaosCtx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+      chaosCtx.stroke();
+      chaosCtx.restore();
+    }
+  }
+
+  let lastRingTime = 0;
+  function animateChaos(t) {
+    chaosCtx.clearRect(0, 0, chaosCanvas.width, chaosCanvas.height);
+    if (t - lastRingTime > 200) { rings.push(new Ring()); lastRingTime = t; }
+    rings = rings.filter(r => { const alive = r.update(); r.draw(); return alive; });
+    requestAnimationFrame(animateChaos);
+  }
+  requestAnimationFrame(animateChaos);
+
+  // ─── SCROLL ANIMATIONS ───
+  const observerOptions = { threshold: 0.15 };
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 120);
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.feature-card').forEach(el => observer.observe(el));
+  document.querySelectorAll('.spec-row').forEach((el, i) => {
+    el.style.transitionDelay = `${i * 80}ms`;
+    observer.observe(el);
+  });
+
+  // ─── COUNTER ANIMATION ───
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const target = parseInt(el.dataset.target);
+        let current = 0;
+        const step = target / 60;
+        const timer = setInterval(() => {
+          current = Math.min(current + step, target);
+          el.textContent = Math.round(current);
+          if (current >= target) clearInterval(timer);
+        }, 16);
+        counterObserver.unobserve(el);
+      }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('[data-target]').forEach(el => counterObserver.observe(el));
+
+  // ─── SCROLL PARALLAX / HUE SHIFT ───
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    const maxScroll = document.body.scrollHeight - window.innerHeight;
+    const progress = scrollY / maxScroll;
+    const hue = progress * 360;
+    document.documentElement.style.setProperty('--neon-cyan', `hsl(${180 + hue * 0.3},100%,60%)`);
+  });
+
+  // ─── TILT on HOLO CARD ───
+  const holoCard = document.querySelector('.holo-card');
+  if (holoCard) {
+    holoCard.addEventListener('mousemove', e => {
+      const rect = holoCard.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      const rx = (e.clientY - cy) / rect.height * 20;
+      const ry = (cx - e.clientX) / rect.width * 20;
+      holoCard.style.transform = `perspective(600px) rotateX(${rx}deg) rotateY(${ry}deg) scale(1.04)`;
+    });
+    holoCard.addEventListener('mouseleave', () => {
+      holoCard.style.transform = '';
+    });
+  }
+
+  console.log('%c🔥 CHAOS EDITION 🔥', 'color:#ff006e;font-size:32px;font-weight:900;text-shadow:0 0 10px #ff006e');
+  console.log('%cเว็บนี้สร้างเพื่อความสนุกเท่านั้น 😄', 'color:#00f5ff;font-size:16px');
+  </script>
+</body>
+</html>
